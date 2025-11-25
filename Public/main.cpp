@@ -7,12 +7,7 @@ struct Planar {
     virtual ~Planar() = default;
     
 };
-Planar * make (std::istream is);
-Planar * make(size_t pl);
-Planar *mostleft(Planar ** pls, size_t k);
 
-void draw(Planar * pl);
-void free_planars(Planar ** pls, size_t k);
 
 struct Point: Planar{
     virtual int x() const;
@@ -24,6 +19,21 @@ struct Point: Planar{
 private:
     int data[2];
 };
+
+struct Vector: Planar{
+  virtual int x() const = 0;
+  virtual int y() const = 0;
+  virtual int abs_sqr() const = 0;
+  virtual ~Vector() = default;
+};
+
+Planar * make (std::istream is);
+Planar * make(size_t pl);
+Planar *mostleft(Planar ** pls, size_t k);
+void draw(Planar * pl);
+void free_planars(Planar ** pls, size_t k);
+
+
 int main(){
     Planar * pls[10]={};
     size_t k=0;
